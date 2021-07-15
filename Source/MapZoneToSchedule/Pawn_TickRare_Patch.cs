@@ -8,8 +8,8 @@ namespace MapZoneToSchedule
     [HarmonyPatch(typeof(Pawn), "TickRare")]
     public class Pawn_TickRare_Patch
     {
-        private static readonly Dictionary<Pawn, string> lastManualArea = new();
-        private static readonly Dictionary<Pawn, string> lastAutoArea = new();
+        private static readonly Dictionary<Pawn, string> lastManualArea = new Dictionary<Pawn, string>();
+        private static readonly Dictionary<Pawn, string> lastAutoArea = new Dictionary<Pawn, string>();
 
         public static void Postfix(Pawn __instance)
         {
