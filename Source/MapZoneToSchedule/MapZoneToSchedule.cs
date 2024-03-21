@@ -9,8 +9,7 @@ public class MapZoneToSchedule
 {
     static MapZoneToSchedule()
     {
-        var harmony = new Harmony("Mlie.MapZoneToSchedule");
-        harmony.PatchAll(Assembly.GetExecutingAssembly());
+        new Harmony("Mlie.MapZoneToSchedule").PatchAll(Assembly.GetExecutingAssembly());
     }
 
     public static void WriteDebug(string message)

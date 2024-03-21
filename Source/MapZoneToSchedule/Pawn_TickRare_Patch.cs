@@ -45,7 +45,7 @@ public class Pawn_TickRare_Patch
     private static void verifyArea(Pawn pawn)
     {
         var currentAssignmentLabel = pawn.timetable.CurrentAssignment.label.ToLower();
-        var currentAreaRestriction = pawn.playerSettings.AreaRestriction;
+        var currentAreaRestriction = pawn.playerSettings.AreaRestrictionInPawnCurrentMap;
         var currentAreaRestrictionLabel = "unrestricted";
         if (currentAreaRestriction != null)
         {
@@ -65,13 +65,13 @@ public class Pawn_TickRare_Patch
             MapZoneToSchedule.WriteDebug(
                 $"Found no area matching {currentAssignmentLabel} for {pawn.NameShortColored}");
             lastAutoArea.Remove(pawn);
-            if (!lastManualArea.ContainsKey(pawn))
+            if (!lastManualArea.TryGetValue(pawn, out var value))
             {
                 return;
             }
 
             MapZoneToSchedule.WriteDebug(
-                $"Trying to match lastManualArea: {lastManualArea[pawn]} for {pawn.NameShortColored}");
+                $"Trying to match lastManualArea: {value} for {pawn.NameShortColored}");
             possibleAssignmentArea = getAreaByLabel(pawn, lastManualArea[pawn]);
             MapZoneToSchedule.WriteDebug(
                 possibleAssignmentArea == null
@@ -111,6 +111,6 @@ public class Pawn_TickRare_Patch
 
     private static void trySetAssignment(Pawn pawn, Area newArea)
     {
-        pawn.playerSettings.AreaRestriction = newArea;
+        pawn.playerSettings.AreaRestrictionInPawnCurrentMap = newArea;
     }
 }
