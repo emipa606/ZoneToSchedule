@@ -11,9 +11,4 @@ public class MapZoneToSchedule
     {
         new Harmony("Mlie.MapZoneToSchedule").PatchAll(Assembly.GetExecutingAssembly());
     }
-
-    public static void WriteDebug(string message)
-    {
-        // Log.Message($"[MapZoneToSchedule]: {message}");
-    }
 }
